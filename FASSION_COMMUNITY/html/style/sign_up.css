@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif; /* 폰트  */
+   /* font-family: sans-serif;*/
+    background:linear-gradient(135deg, #1a1a1a, #2b1a3d);
+    color:#fff;
+    min-height: 100vh; /* 최소한 화면 높이 (100vh) padding이 0이되도 유지지*/
+    display: flex; /* 박스요소를   한열 정렬 */
+    justify-content:center;/* 요소들을 가로축 가운데 정렬*/
+    align-items: center;/* 요소들의 세로축 가운데 정렬*/
+
+}
+
+h1 {
+    font-size: 2.5em; /* 글자 크기  */
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 백그라운드 색 그라데이션션 */
+    background-clip: text; /* 표준 속성 추가*/
+    -webkit-background-clip: text; /* 글자에만 컬러 적용되게 크롬적용 */
+    color: transparent; /* 글자 색 투명하게 해서 그라데이션 보이게게*/
+}
+
+.sign-up-box { /*회원가입 박스 전체 꾸미기*/
+    background:  #173838; /* 다크 실버 색상 */
+    color: #333;
+    width: 300px; /* 박스 너비 */
+    padding: 30px; /* 박스 안쪽 여백 30px*/
+    border: 1px solid #173838; /* 회색 테두리 */
+    border-radius: 10px; /*둥근 모서리*/
+    box-shadow: 0 4px 20px raba(0,0,0,0.3);/*그림자 추가*/
+    text-align: center;/* 텍스트 가운데 정렬*/
+    
+}
+
+.sign-up-box input { /*input 타입 박스 꾸미기*/
+    width: 100%; /*콘텐츠 100%*/
+    margin: 10px 0; /*위 아래 여백*/
+    padding: 5px; /* padding: 5px*/
+    border: 1px solid #ccc; /*1px 두께의 회색 테두리*/
+    border-radius: 5px; /* 모서리를 둥글게 만듬*/
+    
+}
+
+.sign-up-box button {
+    display: block; /*블록 요소가 되고 한줄 차지*/
+    width: 100%; /* 너비 꽉채움*/
+    margin: 10px 0; /* 위아래 여백 10 좌우 0 */
+    padding: 12px;  /* 안쪽 여백 12px*/
+    border: none; /*테두리 제거*/
+    border-radius: 5px; /* 모서리 둥글게*/
+    font-size: 14px; /*글자 크기 */
+    font-weight: 600; /* 글자 두께*/
+    cursor: pointer; /* 커서가 손가락으로 바뀜*/
+    text-decoration: none; /*a테그의 밑줄 제거*/
+    transition: all 0.3s ease; /*스타일 변화에 부드러움 추가*/
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /*그림자 추추가*/
+}

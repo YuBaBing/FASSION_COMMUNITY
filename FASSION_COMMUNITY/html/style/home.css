@@ -1,0 +1,178 @@
+body {
+    font-family: 'Poppins', sans-serif; /*글꼴 적용*/
+    background: linear-gradient(135deg, #1a1a1a, #2b1a3d);
+    color: #fff;
+    margin: 0; /* 주변 요소 공간*/
+    padding: 20px; /* 글자와 박스 사이공간크기기*/
+}
+
+.header {
+    display: flex; /* 매뉴를 가로 나란히*/
+    justify-content: space-between; /* 글자를 양쪽 끝에에*/
+    align-items: center; /*수직 가운데 정렬*/
+    max-width: 1200px; /*너비 제한 즉 해더 전체에 대한 폭 제한으로 만약 화면이 티비만하면 양쪽에 몰린 매뉴들이 너무 몰려서 어느정도 제한을 만든거 이뿌게게*/
+    margin: 0 auto 40px; /*중앙정렬과 하단 여백*/
+}
+
+h1 {
+    font-size: 2.5em;
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /*박스 배경에 시작색 끝색 45도 적용 */
+    -webkit-background-clip: text; /* 글자에만 컬러 적용되게 */
+    background-clip:text;
+    color: transparent; /*글자색 투명(그래야지 글자에 컬러 들어감)*/
+}
+
+ /* 매뉴를 더 세말하게 조정할라고 menu a도 만듬*/
+.menu { 
+    text-align: right; /*오른쪽 정렬*/
+}
+#username-display {
+    color: #00ddeb;
+    text-decoration: none; /*밑줄 제거*/
+    font-weight: 600; /*글자 두껍 크기*/
+    margin-left: 20px; /* 링크 사이 여백*/
+
+}
+
+.menu a {
+    color: #00ddeb;
+    text-decoration: none; /*밑줄 제거*/
+    font-weight: 600; /*글자 두껍 크기*/
+    margin-left: 20px; /* 링크 사이 여백*/
+}
+
+.menu a:hover { /* 마우스 올리면 색이랑 크기 변하기*/
+    color: #8a4af3;
+}
+
+.container {
+    display: grid; /*격자(바둑판) 모양 레이아웃(열과 행으로 나눔)*/
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개씩 위랑 세트 2열에 1대1 설정정 */
+    gap: 20px; /* 간격 */
+    max-width: 1200px; /* 너비 제한*/
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.post {
+    background: rgba(255, 255, 255, 0.05); /* 반투명회색 배경*/
+    padding: 15px; /* 안쪽 여백 */
+    border-radius: 15px; /* 둥근 모서리 */
+    backdrop-filter: blur(5px); /* 배경 흐리게 */
+    transition: transform 0.3s, box-shadow 0.3s; /*  호버가 작동 할때 변화 부드럽게 */
+}
+
+.post:hover {
+    transform: translateY(-5px); /* 위로 5px 이동*/
+    box-shadow: 0 5px 15px rgba(138, 74, 243, 0.4); /* 그림자 추가*/
+}
+
+.post img {
+    max-width: 100%; /* 가로 꽉 채움 */
+    height: auto; /* 세로 400px 고정*/
+    object-fit: cover;  /* 이미지 잘리지 않게*/
+    border-radius: 10px; /* 둥근 모서리*/
+}
+s
+.post h3 { /* 게시물 제목 */
+    margin: 10px 0; /* 위 아래 여백 */
+    color: #e0e0e0; /* 밝은 회색 */
+    font-size: 1.1em; /* 약간 큰 글자*/
+}
+
+.post p { /* 게시물 안 글자*/
+    font-size: 0.9em; 
+    color: #b0b0b0;
+    margin: 5px 0; /*위 아래 여백*/
+}
+
+.like-btn {
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라디언트 45도 보~청*/
+    border: none;  /*테두리 없음*/
+    padding: 8px 15px; /* 안쪽 여백 */
+    color: white; /* 글자 색 힌색 */
+    cursor: pointer; /* 마우스 손모양 */
+    border-radius: 20px; /* 둥근 모서리 */
+    font-size: 0.9em;
+    transition: opacity 0.3s; /* 투명도 변화 부드럽게*/
+}
+
+.like-btn:hover {
+    opacity: 0.8; /* 살짝 투명해짐 */
+}
+
+.more-btn { /*더보기 버튼*/
+    display: block; /* 블록으로 중앙 정렬 */
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라디언트 */
+    border: none; /* 테두리 없음 */
+    padding: 10px 20px; /* 안쪽 여백 */
+    color: white;
+    cursor: pointer; /* 마우스 손모양 */
+    border-radius: 20px; /* 둥근 모서리 */
+    font-size: 1em; 
+    margin: 40px auto; /* 중앙 정렬과 위아래 여백 */
+    text-align: center; /* 텍스트 가운데 */
+    max-width: 200px; /* 너비 제한 */
+}
+
+.more-btn:hover {
+    opacity: 0.8; /* 살짝 투명하지게 */
+}
+
+.news-section { /*뉴스 섹션*/
+    max-width: 1200px; /* 너비 제한*/
+    margin: 40px auto; /* 중앙 정렬과 위아래 여백 */
+}
+
+.news-section h2 { /* 뉴스 간판 위 fcs랑 같게*/
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라데이션 위랑 같게*/
+    -webkit-background-clip: text; /* 글자에만 컬러 */
+    background-clip:text;
+
+    color: transparent; /* 글자 투명 */
+}
+
+
+.news-item { /*뉴스 게시물 */
+    background: rgba(255, 255, 255, 0.05); /* 반투명 회색*/
+    padding: 15px; /* 안쪽 여백 */
+    border-radius: 15px; /* 둥근 모서리 */
+    margin-bottom: 15px; /* 아래쪽 여백 */
+    
+}
+.logout-btn{
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라디언트 */
+    border: none; /* 테두리 없음 */
+    padding: 10px 20px; /* 안쪽 여백 */
+    color: rgb(51, 26, 26);
+    cursor: pointer; /* 마우스 손모양 */
+    border-radius: 20px; /* 둥근 모서리 */
+    font-size: 1em; 
+    margin: 40px auto; /* 중앙 정렬과 위아래 여백 */
+    text-align: center; /* 텍스트 가운데 */
+    text-decoration: none; /*밑줄 제거*/
+    font-weight: 600; /*글자 두껍 크기*/
+
+}
+
+.post-btn-box{
+    text-align: center; /* 가운데 정렬 */
+    margin: 20px 0; /* 위아래 여백 */
+}
+.post-btn{
+
+    display: inline-block;
+    width: 50px; /* 버튼 크기 */
+    height: 50px;
+    line-height: 50px; /* 텍스트 수직 가운데 정렬 */
+    background: linear-gradient(45deg, #6b48ff, #00ddeb); /* 파란색 그라데이션 */
+    color: rgb(25, 11, 11); /* 텍스트 색상 */
+    font-size: 40px; /* "+" 기호 크기 */
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    border-radius: 50%; /* 원형 버튼 */
+    transition: background 0.3s ease; /* 호버 효과 부드럽게 */
+}
+.post-btn:hover {
+    background: linear-gradient(45deg, #5433ff, #20bdff); /* 더 밝은 그라데이션 */
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 한글도 잘보이는 문자 인코딩 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--모바일 화면 조정정-->
+    <title>my page</title> <!--브라우저 탭에 표시시-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!--구글 폰트 갖고옴-->
+    <link rel="stylesheet" href="style/profile.css"> <!--css 파일 갖고옴-->
+</head>
+<body>
+    <div class="header"> <!--헤더 css-->
+        <h1>내 프로필</h1> <!-- 제목 -->
+        <div class="menu"> <!-- 매뉴 css-->
+            <a href="home.html"> HOME </a> <!--홈 으로 돌아가기 -->
+        </div>
+    </div>
+
+    <!-- 내 정보 -->
+     <div class="profile"> 
+        <h2 id="profile-username"></h2> <!--이름 동적으로 표시-->
+        <p></p>
+      </div>
+    
+     <!-- 내 게시물 -->
+     <div id="my-post-container" class="container">
+        <!-- 본인의 게시물이 동적으로 추가될 공간 -->
+    </div>
+
+      <!-- 더 보기 버튼 -->
+    <button class="more-btn">더 보기</button>
+
+
+    
+    <script src="scripts/home.js"></script>
+    <script>
+        window.onload = function() {
+            checkLoginStatus();
+            displayUsername();
+            displayMyPosts(); // 본인의 게시물 표시
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" type="text/css" href="style/post.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <div class="header">
+        <h1>FCS</h1>
+        <div class="menu">
+            <a href="home.html">HOME</a>
+        </div>
+    </div>
+
+    <!-- 글 작성 폼 -->
+    <div class="post-form-container">
+        <form id="post-form" class="post">
+            <!-- 사진 미리보기 -->
+            <div id="image-preview" class="image-preview">
+                <!-- 업로드된 이미지가 여기에 표시됨 -->
+            </div>
+            <!-- 입력 필드 -->
+            <input type="file" id="post-image" accept="image/*">
+            <input type="text" id="post-title" placeholder="제목 입력" required>
+            <input type="text" id="post-content" placeholder="내용 입력" required>
+            <button type="submit">게시물 추가</button>
+        </form>
+    </div>
+
+    <script src="scripts/sign_up.js"></script>
+    <script src="scripts/home.js"></script>
+    <script>
+        window.onload = function() {
+            // 로그인 상태 확인
+            checkLoginStatus();
+
+            // 사용자 이름 표시
+            displayUsername();
+
+            previewImage();
+
+            // 폼 제출 이벤트
+            const postForm = document.getElementById('post-form');
+            if (postForm) {
+                postForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    addPost();
+                });
+            } else {
+                console.error("ID가 'post-form'인 요소를 찾을 수 없습니다.");
+            }
+
+
+        };
+    </script>
+</body>
+</html>

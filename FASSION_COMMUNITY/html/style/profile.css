@@ -1,0 +1,127 @@
+body {
+    font-family: 'Poppins', sans-serif; /* 폰트  */
+    background: linear-gradient(135deg, #1a1a1a, #2b1a3d); /* 백그라운드 색 그라데이션*/
+    color: #fff;
+    margin: 0; /* 마진 박스 밖 요소 맞춤 */
+    padding: 20px; /* 패팅 박스 안요소 맞춤  */
+}
+.header {
+    display: flex; /* 상단 매뉴 가로로 정렬 */
+    justify-content: space-between; /* 글자자들 사이드로 몰기 */
+    align-items: center; /* 가운데 정렬 */
+    max-width: 1200px; /* 너비 제한 즉 */
+    margin: 0 auto 40px; /*중앙 정렬과 하단 여백*/
+}
+h1 {
+    font-size: 2.5em; /* 글자 크기  */
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 백그라운드 색 그라데이션션 */
+    -webkit-background-clip: text; /* 글자에만 컬러 적용되게 */
+    background-clip:text;
+    color: transparent; /* 글자 색 투명*/
+}
+
+/* 매뉴와 매뉴 링크의 차이를 두고 만질라고 menu a도 만듬듬*/
+.menu {
+    text-align: right; /* 오른쪽 정렬 */
+}
+.menu a { 
+    color: #00ddeb; 
+    text-decoration: none; /* 밑줄 제거거 */
+    font-weight: 600; /* 글자 두껍 크기 */
+    margin-left: 20px; /* 링크 사이 여백 마진*/
+}
+.menu a:hover {
+    color: #8a4af3;
+}
+.profile {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px; /* 둥근 모서리 */
+    text-align: center; /* 중앙 정렬 */
+    max-width: 400px; /* 너비 제한 */
+    margin: 0 auto 40px; /* 중앙 정렬 */
+}
+.profile h2 {
+    background: linear-gradient(45deg, #8a4af3, #00ddeb);
+    -webkit-background-clip: text; /* 글자만 적용 */
+    background-clip:text;
+
+    color: transparent; /*글자 투명*/
+}
+.container {
+    display: grid; /*격자 레이아웃*/
+    grid-template-columns: repeat(2, 1fr); /* 게시물 2열 1대1로 맞춤 */
+    gap: 20px; /* 간격 */
+    max-width: 1200px; /* 너비 제한 */
+    margin: 0 auto; /* 마진 가운데 정렬 */
+}
+.post { 
+    background: rgba(255, 255, 255, 0.05); 
+    padding: 15px; 
+    border-radius: 15px; /* 둥근 모서리*/
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s, box-shadow 0.3s; /* 호버 했을때 변화 */
+}
+.post:hover {
+    transform: translateY(-5px); /*위로 5픽셀 이동 */
+    box-shadow: 0 5px 15px rgba(138, 74, 243, 0.4); /* 그림자 추가 */
+}
+.post img {
+    max-width: 100%; /* 가로 꽉 채움 */
+    height: auto; /* 세로 고정 */
+    object-fit: cover; /* 이미지 잘리지 않게 */
+    border-radius: 10px; /* 둥근 모서리 */
+}s
+.post h3 {
+    margin: 10px 0; /* 마진 위아래 여백 */
+    color: #e0e0e0;
+    font-size: 1.1em;
+}
+.post p {
+    font-size: 0.9em;
+    color: #b0b0b0;
+    margin: 5px 0; /* 마진 위아래 여백 */
+}
+.like-btn {
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라디언트 45도 보~청*/
+    border: none;  /*테두리 없음*/
+    padding: 8px 15px; /* 안쪽 여백 */
+    color: white; /* 글자 색 힌색 */
+    cursor: pointer; /* 마우스 손모양 */
+    border-radius: 20px; /* 둥근 모서리 */
+    font-size: 0.9em;
+    transition: opacity 0.3s; /* 투명도 변화 부드럽게*/
+}
+.like-btn:hover {
+    opacity: 0.8; /* 투명도 */
+}
+.more-btn { /*더보기 버튼*/
+    display: block; /* 블록으로 중앙 정렬 */
+    background: linear-gradient(45deg, #8a4af3, #00ddeb); /* 배경 그라디언트 */
+    border: none; /* 테두리 없음 */
+    padding: 10px 20px; /* 안쪽 여백 */
+    color: white;
+    cursor: pointer; /* 마우스 손모양 */
+    border-radius: 20px; /* 둥근 모서리 */
+    font-size: 1em; 
+    margin: 40px auto; /* 중앙 정렬과 위아래 여백 */
+    text-align: center; /* 텍스트 가운데 */
+    max-width: 200px; /* 너비 제한 */
+}
+.more-btn:hover {
+    opacity: 0.8; /* 두명도 */
+}
+
+.delete-btn {
+    background-color: #ff4444;
+    color: white;
+    border: none; /* 테두리 없음 */
+    padding: 5px 10px; /* 안쪽 여백 */
+    margin-left: 10px; /*옆쪽 여백 */
+    border-radius: 20px; /* 둥근 모서리 */
+    cursor: pointer; /*마우스 손모양*/
+ }
+  /*호버*/
+ .delete-btn:hover {
+    background-color: #cc0000; 
+ }
