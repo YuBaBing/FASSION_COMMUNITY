@@ -37,7 +37,7 @@ function likePost(button, postId) {
     const loggedInUser = getLoggedInUser(); // 로그인 사용자 확인
     if (!loggedInUser) return; // 사용자 없으면 종료
 
-    fetch(`http://localhost:3000/api/posts/${postId}/like`, {
+    fetch(`https://fcstest.shop/api/posts/${postId}/like`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // 요청 데이터가 JSON임을 명시
@@ -74,7 +74,7 @@ function deletePost(postId) {
         return; // 취소 시 종료
     }
 
-    fetch(`http://localhost:3000/api/posts/${postId}`, {
+    fetch(`https://fcstest.shop/api/posts/${postId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json' // 요청 데이터가 JSON임을 명시
@@ -95,10 +95,13 @@ function deletePost(postId) {
         alert('삭제 중 오류가 발생했습니다.');
     });
 }
-
+//  수정함
+function editPost(postId) {
+    window.location.href = `update-post.html?postId=${postId}`;
+}
 // 로그아웃 처리 함수
 function logout() {
-    fetch('http://localhost:3000/api/logout', {
+    fetch('https://fcstest.shop/api/logout', {
         method: 'POST',
         credentials: 'include' // 서버에 로그아웃 요청 (쿠키 삭제)
     })
@@ -137,7 +140,7 @@ function addPost() {
     formData.append('content', content); // 내용 추가
     if (image) formData.append('image', image); // 이미지 있으면 추가
 
-    fetch('http://localhost:3000/api/posts', {
+    fetch('https://fcstest.shop/api/posts', {
         method: 'POST',
         body: formData, // FormData로 데이터 전송
         credentials: 'include' // 쿠키를 서버에 전송
@@ -173,7 +176,7 @@ function displayAllPosts() {
     const postsPerPage = 4; // 한 페이지에 표시할 게시물 수
 
     function loadPosts(page) {
-        fetch(`http://localhost:3000/api/posts?page=${page}&limit=${postsPerPage}`)
+        fetch(`https://fcstest.shop/api/posts?page=${page}&limit=${postsPerPage}`)
         .then(response => {
             if (!response.ok) { // 응답 오류 시
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -188,11 +191,11 @@ function displayAllPosts() {
                 const postElement = document.createElement('div'); // 새 div 생성
                 postElement.className = 'post'; // CSS 클래스 추가
                 postElement.innerHTML = `
-                    ${post.image ? `<img src="http://localhost:3000${post.image}" alt="코디 사진">` : ''} <!-- 이미지 표시 -->
+                    ${post.image ? `<img src="https://fcstest.shop${post.image}" alt="코디 사진">` : ''} <!-- 이미지 표시 -->
                     <h3>${post.userId}</h3> <!-- 작성자 이름 -->
                     <h3>${post.title}</h3> <!-- 게시물 제목 -->
                     <p>${post.content}</p> <!-- 게시물 내용 -->
-                    <button class="like-btn" onclick="likePost(this, '${post._id}')" 
+                    <button class="like-btn" onclick="likePost(this, '${post._id}')"
                         data-clicked="${hasLiked}"
                         style="background-color: ${hasLiked ? '#ffcccc' : ''}">
                         좋아요 <span>${post.likes || 0}</span> <!-- 좋아요 버튼 -->
@@ -229,6 +232,7 @@ function displayAllPosts() {
     }
 }
 
+
 // 내 게시물을 표시하는 함수
 function displayMyPosts() {
     const loggedInUser = getLoggedInUser(); // 로그인 사용자 확인
@@ -243,7 +247,7 @@ function displayMyPosts() {
     myPostContainer.innerHTML = ''; // 기존 게시물 지우기
 
     console.log('Fetching posts for user:', loggedInUser.username); // 디버깅 로그
-    fetch(`http://localhost:3000/api/posts?userId=${loggedInUser.username}`)
+    fetch(`https://fcstest.shop/api/posts?userId=${loggedInUser.username}`)
     .then(response => {
         if (!response.ok) { // 응답 오류 시
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -260,21 +264,25 @@ function displayMyPosts() {
             const postElement = document.createElement('div'); // 새 div 생성
             postElement.className = 'post'; // CSS 클래스 추가
             postElement.innerHTML = `
-                ${post.image ? `<img src="http://localhost:3000${post.image}" alt="코디 사진">` : ''} <!-- 이미지 표시 -->
+                ${post.image ? `<img src="https://fcstest.shop${post.image}" alt="코디 사진">` : ''} <!-- 이미지 표시 -->
                 <h3>${post.userId}</h3> <!-- 작성자 이름 -->
                 <h3>${post.title}</h3> <!-- 게시물 제목 -->
                 <p>${post.content}</p> <!-- 게시물 내용 -->
-                <button class="like-btn" onclick="likePost(this, '${post._id}')" 
+                <button class="like-btn" onclick="likePost(this, '${post._id}')"
                     data-clicked="${hasLiked}"
                     style="background-color: ${hasLiked ? '#ffcccc' : ''}">
                     좋아요 <span>${post.likes || 0}</span> <!-- 좋아요 버튼 -->
                 </button>
                 <button class="delete-btn" data-post-id="${post._id}">삭제</button> <!-- 삭제 버튼 -->
+                <button class="edit-btn" data-post-id="${post._id}">수정</button>
             `;
             myPostContainer.appendChild(postElement); // 컨테이너에 추가
 
             const deleteBtn = postElement.querySelector('.delete-btn'); // 삭제 버튼
             deleteBtn.addEventListener('click', () => deletePost(post._id)); // 삭제 함수 연결
+
+            const editBtn = postElement.querySelector('.edit-btn');
+            editBtn.addEventListener('click', () => editPost(post._id));
         });
     })
     .catch(error => { // 오류 처리

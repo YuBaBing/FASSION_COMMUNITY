@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update-post</title>
+    <link rel="stylesheet" type="text/css" href="style/update-post.css">
+</head>
+<body>
+    <div class="header">
+        <h1>FCS</h1>
+        <div class="menu">
+            <a href="home.html">HOME</a>
+        </div>
+    </div>
+
+    <div class="post-form-container">
+        <div class="post">
+            <div class="image-preview" id="image-preview"></div>
+            <input type="file" id="post-image" accept="image/*" placeholder="이미지">
+            <input type="text" id="post-title" placeholder="제목" required>
+            <textarea id="post-content" placeholder="내용" required></textarea>
+            <div class="button-group">
+                <button onclick="updatePost()">수정완료!</button>
+                <button class="cancel-btn" onclick="window.location.href='home.html'">취소</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getLoggedInUser() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (!loggedInUser || !loggedInUser.username) {
+                console.error("로그인한 사용자가 없습니다.");
+                window.location.href = 'logs.html';
+                return null;
+            }
+            return loggedInUser;
+        }
+
+        function getPostIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('postId');
+        }
+
+        function loadPostData() {
+            const postId = getPostIdFromUrl();
+            if (!postId) {
+                alert('게시물 ID가 없습니다.');
+                window.location.href = 'home.html';
+                return;
+            }
+
+            fetch(`https://fcstest.shop/api/posts?userId=${getLoggedInUser().username}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const post = data.posts.find(p => p._id === postId);
+                    if (!post) {
+                        alert('게시물을 찾을 수 없습니다.');
+                        window.location.href = 'home.html';
+                        return;
+                    }
+                    document.getElementById('post-title').value = post.title;
+                    document.getElementById('post-content').value = post.content;
+                    if (post.image) {
+                        document.getElementById('image-preview').innerHTML = 
+                            `<img src="https://fcstest.shop${post.image}" alt="현재 이미지">`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching post:', error);
+                    alert('게시물 데이터를 불러오는 중 오류가 발생했습니다.');
+                    window.location.href = 'home.html';
+                });
+        }
+
+        function previewImage() {
+            const postImageInput = document.getElementById('post-image');
+            const imagePreview = document.getElementById('image-preview');
+            postImageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        imagePreview.innerHTML = `<img src="${event.target.result}" alt="미리보기 이미지">`;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.innerHTML = '';
+                }
+            });
+        }
+
+        function updatePost() {
+            const postId = getPostIdFromUrl();
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            const image = document.getElementById('post-image').files[0];
+
+            if (!title || !content) {
+                alert('제목과 내용을 입력해주세요.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('content', content);
+            if (image) formData.append('image', image);
+
+            fetch(`https://fcstest.shop/api/posts/${postId}`, {
+                method: 'PUT',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('게시물이 수정되었습니다!');
+                    window.location.href = 'home.html';
+                } else {
+                    alert('게시물 수정에 실패했습니다: ' + (data.message || '알 수 없는 오류'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('게시물 수정 중 오류가 발생했습니다.');
+            });
+        }
+
+        // 페이지 로드 시 실행
+        getLoggedInUser();
+        loadPostData();
+        previewImage();
+    </script>
+</body>
+</html>

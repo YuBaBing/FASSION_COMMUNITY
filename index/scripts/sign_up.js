@@ -1,3 +1,4 @@
+
 // 회원가입 함수: 백엔드 API를 호출해 새 사용자 등록
 function signup() {
     // HTML에서 username과 password 입력값 가져오기
@@ -12,7 +13,7 @@ function signup() {
     }
 
     // 백엔드에 회원가입 요청 보내기
-    fetch('http://localhost:3000/api/register', {
+    fetch('https://fcstest.shop/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }) // 사용자 정보 JSON으로 전송
@@ -40,6 +41,7 @@ function signup() {
     })
     .catch(error => { // 네트워크 오류 등 처리
         console.error('Signup error:', error);
+	console.log('API_URL:', process.env.API_URL);
         alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
     });
 }

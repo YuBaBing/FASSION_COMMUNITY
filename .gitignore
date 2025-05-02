@@ -1,0 +1,22 @@
+# Node.js 의존성
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# 사용자 업로드 파일
+backend/Uploads/
+
+# 환경 변수
+.env
+.env.local
+.env.development
+.env.production
+
+# 로그 및 임시 파일
+*.log
+temp/
+tmp/
+
+# 빌드 결과물 (필요 시 추가)
+dist/
+build/

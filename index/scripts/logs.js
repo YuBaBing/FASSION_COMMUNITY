@@ -1,3 +1,4 @@
+
 // 로그인 함수: 백엔드 API를 호출해 사용자 인증
 function login() {
     // HTML에서 입력값 가져오기
@@ -11,7 +12,7 @@ function login() {
     }
 
     // 백엔드에 로그인 요청 보내기 (POST /api/login)
-    fetch('http://localhost:3000/api/login', {
+    fetch('https://fcstest.shop/api/login', {
         method: 'POST', // HTTP POST 요청
         headers: { 'Content-Type': 'application/json' }, // 요청 데이터가 JSON 형식임을 명시
         body: JSON.stringify({ username, password }), // 사용자 이름과 비밀번호를 JSON으로 변환해 전송
@@ -40,4 +41,5 @@ function login() {
         alert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.'); // 사용자에게 오류 메시지
     });
 }
+
 
